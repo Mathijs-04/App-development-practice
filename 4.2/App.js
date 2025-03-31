@@ -12,13 +12,6 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator id={0} initialRouteName="Data">
           <Stack.Screen name="Data" component={DataScreen} options={({ navigation }) => ({
-            // headerRight: () => (
-            //     <Button
-            //         onPress={() => navigation.navigate('Detail')}
-            //         title="Details"
-            //         color="#000"
-            //     />
-            // ),
           })} />
           <Stack.Screen name={"Detail"} component={DetailScreen} />
         </Stack.Navigator>
