@@ -1,36 +1,27 @@
-import {StatusBar} from 'expo-status-bar';
-import {StyleSheet, Text, View} from 'react-native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import HomeScreen from "./HomeScreen";
-import {createStaticNavigation} from "@react-navigation/native";
-import ListScreen from "./ListScreen";
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import DataScreen from "./DataScreen";
+import {Button} from "react-native";
 import DetailScreen from "./DetailScreen";
+import {createNativeStackNavigator} from "@react-navigation/native-stack";
 
-const RootStack = createNativeStackNavigator({
-  screens: {
-    Home: {
-      screen: HomeScreen,
-      options: {
-        title: 'Home',
-      },
-    },
-    List: {
-      screen: DataScreen,
-      options: {
-        title: 'Data',
-      },
-    },
-    Detail: {
-      screen: DetailScreen,
-      options: {
-        title: 'Detail',
-      },
-    },
-  },
-});
-
-const Navigation = createStaticNavigation(RootStack);
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  return <Navigation/>;
+  return (
+      <NavigationContainer>
+        <Stack.Navigator id={0} initialRouteName="Data">
+          <Stack.Screen name="Data" component={DataScreen} options={({ navigation }) => ({
+            // headerRight: () => (
+            //     <Button
+            //         onPress={() => navigation.navigate('Detail')}
+            //         title="Details"
+            //         color="#000"
+            //     />
+            // ),
+          })} />
+          <Stack.Screen name={"Detail"} component={DetailScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+  );
 }
